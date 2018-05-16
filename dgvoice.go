@@ -160,9 +160,12 @@ func PlayAudioFile(v *discordgo.VoiceConnection, filename string, stop <-chan bo
 	}
 
 	go func() {
-		kill := <-stop
-		if kill {
-			err = run.Process.Kill()
+		for {
+			kill := <-stop
+			if kill {
+				err = run.Process.Kill()
+				break
+			}
 		}
 	}()
 
