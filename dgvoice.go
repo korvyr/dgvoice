@@ -184,7 +184,6 @@ func PlayAudioFile(v *discordgo.VoiceConnection, filename string, stop <-chan bo
 		if err != nil {
 			OnError("Couldn't stop speaking", err)
 		}
-		close(stop)
 	}()
 
 	send := make(chan []int16, 2)
